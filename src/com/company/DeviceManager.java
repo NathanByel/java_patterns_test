@@ -20,17 +20,32 @@ public class DeviceManager {
 
     public boolean sendCommandToDevice(String devID, String command) {
         Command commandToSend = CommandFactory.getCommand(command);
-        if(commandToSend == null) return false;
+        if (commandToSend == null) return false;
 
         Device device = findByID(devID);
-        if(device == null) return false;
+        if (device == null) return false;
 
         return device.sendCommand(commandToSend);
     }
 
+    public boolean sendCommandSequenceToDevice(String devID, String... commands) {
+        Device device = findByID(devID);
+        if (device == null) return false;
+
+        CommandSequencer commandSequencer = new CommandSequencer(device);
+        for (String command : commands) {
+            Command commandToSend = CommandFactory.getCommand(command);
+            if (commandToSend == null) return false;
+
+            commandSequencer.addCommand(commandToSend);
+        }
+
+        return commandSequencer.sendAll();
+    }
+
     public Device findByID(String devID) {
         for (Device device : devices) {
-            if(device.getDevID().equals(devID)) {
+            if (device.getDevID().equals(devID)) {
                 return device;
             }
         }

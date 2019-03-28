@@ -10,8 +10,13 @@ public class Main {
 
         boolean result = deviceManager.sendCommandToDevice("2", "open");
         System.out.println(result);
+        System.out.println();
 
         result = deviceManager.sendCommandToDevice("10", "open");
+        System.out.println(result);
+        System.out.println();
+        
+        result = deviceManager.sendCommandSequenceToDevice("2", "close", "block");
         System.out.println(result);
     }
 }
