@@ -8,15 +8,25 @@ public class Main {
         deviceManager.addDevice("1");
         deviceManager.addDevice("2");
 
-        boolean result = deviceManager.sendCommandToDevice("2", "open");
-        System.out.println(result);
-        System.out.println();
+        try {
+            deviceManager.sendCommandToDevice("2", "open");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        result = deviceManager.sendCommandToDevice("10", "open");
-        System.out.println(result);
-        System.out.println();
-        
-        result = deviceManager.sendCommandSequenceToDevice("2", "close", "block");
-        System.out.println(result);
+        try {
+            deviceManager.sendCommandToDevice("10", "open");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            deviceManager.sendCommandToDevice("1", "close");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //result = deviceManager.sendCommandSequenceToDevice("2", "close", "block");
+        //System.out.println(result);
     }
 }

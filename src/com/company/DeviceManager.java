@@ -1,5 +1,8 @@
 package com.company;
 
+import com.company.Command.Command;
+import com.company.Command.CommandFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,14 +21,20 @@ public class DeviceManager {
         devices.add(new Device(devID));
     }
 
-    public boolean sendCommandToDevice(String devID, String command) {
+    public void sendCommandToDevice(String devID, String command) throws Exception {
         Command commandToSend = CommandFactory.getCommand(command);
-        if (commandToSend == null) return false;
+        if (commandToSend == null) {
+            throw new IllegalArgumentException("Command \"" + command + "\" not found");
+        }
 
         Device device = findByID(devID);
-        if (device == null) return false;
+        if (device == null) {
+            throw new IllegalArgumentException("Device \"" + devID + "\" not found");
+        }
 
-        return device.sendCommand(commandToSend);
+        if (!device.sendCommand(commandToSend)) {
+            throw new Exception("Failed to send command");
+        }
     }
 
     public boolean sendCommandSequenceToDevice(String devID, String... commands) {

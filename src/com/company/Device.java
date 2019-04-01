@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.Command.Command;
+
 public class Device {
     private String devID;
 
@@ -13,9 +15,7 @@ public class Device {
 
     public boolean sendCommand(Command command) {
         command.setDevID(devID);
-        // netsend(command);
-
-        System.out.println("Command \"" + command.getClass().getSimpleName() + "\" was sent");
+        CommandWorker.getInstance().addCommand(command);
         return true;
     }
 }

@@ -1,12 +1,12 @@
-package com.company;
+package com.company.Command;
 
 public class CommandFactory {
     public static Command getCommand(String command) {
-        if(command.equalsIgnoreCase("open")) {
+        if (command.equalsIgnoreCase("open")) {
             return new CommandOpen();
-        } else if(command.equalsIgnoreCase("close")) {
+        } else if (command.equalsIgnoreCase("close")) {
             return new CommandClose();
-        } else if(command.equalsIgnoreCase("block")) {
+        } else if (command.equalsIgnoreCase("block")) {
             return new CommandBlock();
         }
         return null;
