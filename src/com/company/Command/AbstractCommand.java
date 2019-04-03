@@ -20,9 +20,7 @@ public abstract class AbstractCommand implements Command {
         return timestapm;
     }
 
-    @Override
-    public void execute() {
-        // Log
+    public void toLog() {
         System.out.printf("%s%s: Command \"%s\"(Time stamp %s) to device \"%s\" was executed.%s\n",
                 ConsoleColors.ANSI_YELLOW,
                 new Date(),

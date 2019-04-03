@@ -3,7 +3,7 @@ package com.company.Command;
 public class CommandOpen extends AbstractCommand {
     @Override
     public void execute() {
-        super.execute();
+        toLog();
         // FIXME Some actions...
     }
 }
