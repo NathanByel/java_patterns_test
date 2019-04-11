@@ -3,13 +3,21 @@ package com.company;
 import com.company.DB.DBConnector;
 import com.company.DB.DBHelper;
 import com.company.DB.DeviceMapper;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.sql.SQLException;
 
+@SpringBootApplication
+//@ComponentScan({"com.company.domain"})
+//@EntityScan("com.company.domain")
+//@EnableJpaRepositories("com.company.repositories")
 public class Main {
 
     public static void main(String[] args) {
-        DeviceManager deviceManager = DeviceManager.getInstance();
+        SpringApplication.run(Main.class, args);
+
+       /* DeviceManager deviceManager = DeviceManager.getInstance();
 
         DBHelper dbHelper = new DBHelper(DBConnector.getConnection());
         dbHelper.createDevicesTableIfNotExist();
@@ -31,8 +39,7 @@ public class Main {
             e.printStackTrace();
         } finally {
             DBConnector.close();
-        }
-
+        }*/
 /*
         deviceManager.addDevice("1");
         deviceManager.addDevice("2");

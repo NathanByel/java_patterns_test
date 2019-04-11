@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Devices manager</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    </head>
+
+    <body>
+        <h3>Devices manager</h3>
+
+        <form action="#" th:action="@{/}" th:object="${newDevice}" method="post">
+            <table>
+                <tr>
+                    <td>Dev ID:</td>
+                    <td><input type="text" th:field="*{devID}"></td>
+                    <td th:if="${#fields.hasErrors('devID')}" th:errors="*{devID}">devId error message</td>
+                </tr>
+                <tr>
+                    <td>Name:</td>
+                    <td><input type="text" th:field="*{name}"></td>
+                    <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name error message</td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit">Add device</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <h3>Devices:</h3>
+        <div th:unless="${#lists.isEmpty(devices)}">
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>DevId</th>
+                    <th>Name</th>
+                </tr>
+                <tr th:each="device : ${devices}">
+                    <td th:text="${device.id}"></td>
+                    <td th:text="${device.devID}"></td>
+                    <td th:text="${device.name}"></td>
+                </tr>
+            </table>
+        </div>
+        <div th:if="${#lists.isEmpty(devices)}">
+            None
+        </div>
+    </body>
+</html>
